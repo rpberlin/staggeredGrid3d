@@ -11,7 +11,7 @@
 #define NY  50
 #define NZ  50
 
-#define NMAXSTEPS 2000
+#define NMAXSTEPS 20000
 
 #define U_TOPWALL 1
 #define U_BOTTOMWALL 0
@@ -139,7 +139,7 @@ double runPressureCorrector()
 
     for(nInner=0;nInner<nMaxSweeps;nInner++)
     {
-        //l2norm = calcPprime(urf);
+        l2norm = calcPprime(urf);
         if(nInner <5) normFactor = max(normFactor,l2norm);
 //        cout<<ninner<<"  "<<l2norm<<endl;
         if (l2norm/normFactor < 1e-8){
@@ -147,7 +147,7 @@ double runPressureCorrector()
             break; //converged
          }
     }
-    //cout<<nInner<<"  "<<l2norm<<endl;
+    cout<<nInner<<"  "<<l2norm<<endl;
     return normFactor;
 }
 
